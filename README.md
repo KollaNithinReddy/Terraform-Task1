@@ -109,8 +109,10 @@ To install the AWS Toolkit for Visual Studio, follow these steps:
 ```
 To deploy this project into aws run the below commands in the terminal
 
-```bash
-  terraform init
-  terraform apply
-```
+    1.terraform init:It downloads and installs the provider plugins and modules specified in the configuration files.
+    2.terraform plan:The terraform plan command generates an execution plan and it does not make any changes to your infrastructure
+    3.terraform apply:applies the changes defined in your Terraform configuration files.
+
+
+ 
 
