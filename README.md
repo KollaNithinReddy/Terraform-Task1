@@ -58,7 +58,7 @@ To install the AWS Toolkit for Visual Studio, follow these steps:
 
 
 
-## Documentation
+## Implementation
 #### Manual Inplementation
     1.Sign in to the AWS Management Console as IAM user
     2.In the Simple Queue Service (SQS)  dashboard, click on the "Create Queue" button,Enter a name for queue.
@@ -76,7 +76,8 @@ To install the AWS Toolkit for Visual Studio, follow these steps:
 - Process the received messages from SQS into JSON object.
 - Use the "put_object" to upload the JSON data to the S3 bucket
 
-### IAC(Terraform)
+### Infrastructure as Code(IAC):
+    
     1.provider:A provider is responsible for managing the interaction between Terraform and a specific service provider.In this application we use "aws provider"
     2.SQS Resource:Use "aws_sqs_queue" to create SQS resource and configure vatious properties of the SQS queue according to your requirements
     3.AWS Lambda:Use "aws_lambda_function" to create Lambda resource.
@@ -84,10 +85,13 @@ To install the AWS Toolkit for Visual Studio, follow these steps:
     4.Mapping:For mapping sqs queue and lambda,we use "aws_lambda_event_source_mapping" resource
     5.S3 (Simple Storage Service):use "aws_s3_bucket" resource to create s3 bucket.
 
-- Lambda function code has "lambda_handler" and it has 2 parameters event and context.archive_file is used to zip this code and then this zip file is uploaded to the aws
+- I choose terraform as Infrastructure as Code
+- Lambda function code has "lambda_handler" which is where the executiion starts and it takes 2 parameters they are  event and context.
+- The archive_file is used to zip this code and then this zip file is uploaded to the aws
 
 #### IAM Roles
-IAM roles and permissions for the Lambda function to access SQS and S3 are 
+- IAM roles are used to restrict permissions for the Lambda function to access SQS and S3
+- IAM roles and permissions for the Lambda function to access SQS and S3 are 
 
     1.SQS queue:ReceiveMessage.
     2.S3:GetObject,PutObject.
@@ -103,7 +107,7 @@ IAM roles and permissions for the Lambda function to access SQS and S3 are
     aws sqs send-message --queue-url "QUEUE_URL" --message-body "This is a test message"
 
 ```
-To deploy this project run the below commands in the terminal
+To deploy this project into aws run the below commands in the terminal
 
 ```bash
   terraform init
